@@ -1,0 +1,34 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<h1>List of connected clients</h1>
+Currently there are @Model.FtpClients.Count instances of FTP Client connected.
+
+<table class="table table-hover">
+    <thead>
+    <tr class="m-0">
+        <th class="w-25">
+            
+        </th>
+        <th class="w-75">Name</th>
+        <th class="w-75">Instance</th>
+    </tr>
+    </thead>
+    <tbody> 
+    @{
+        foreach (var client in Model.FtpClients)
+        {
+            <tr>
+                <td class="w-25">
+                    <a asp-page="Client\View" asp-route-id="@client.Id" class="btn btn-primary btn-sm" role="button" aria-pressed="true">View</a>
+                </td>
+                <td class="w-75">@client.MachineName</td>
+                <td class="w-75">@client.InstanceId</td>
+            </tr>
+        }
+    }
+    </tbody>
+</table>
